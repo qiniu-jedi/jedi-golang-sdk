@@ -12,6 +12,14 @@ type updateInfo struct {
 	Description string   `json:"description"`
 }
 
+/*
+
+hub 点播空间名
+key 视频key
+name 视频name
+
+*/
+
 // UpdateVideoInfo 更新视频信息
 func UpdateVideoInfo(hub, key, name, description string, tags []string) string {
 
@@ -24,10 +32,11 @@ func UpdateVideoInfo(hub, key, name, description string, tags []string) string {
 }
 
 // SetVideoImage 设置封面
-func SetVideoImage(hub, videoKey string, active int) string {
+// active 封面索引
+func SetVideoImage(hub, key string, active int) string {
 
 	urlStr := QINIU_JEDI_HOST + "/v1/hubs/" + hub + "/videos/" +
-		base64.URLEncoding.EncodeToString([]byte(videoKey)) +
+		base64.URLEncoding.EncodeToString([]byte(key)) +
 		"/thumbnails/active/" + strconv.Itoa(active)
 
 	res := RequestWithoutBody("PUT", urlStr)
@@ -37,10 +46,10 @@ func SetVideoImage(hub, videoKey string, active int) string {
 }
 
 // DeleteVideo 删除视频
-func DeleteVideo(hub, videoKey string) string {
+func DeleteVideo(hub, key string) string {
 
 	urlStr := QINIU_JEDI_HOST + "/v1/hubs/" + hub + "/videos/" +
-		base64.URLEncoding.EncodeToString([]byte(videoKey))
+		base64.URLEncoding.EncodeToString([]byte(key))
 
 	res := RequestWithoutBody("DELETE", urlStr)
 
@@ -48,6 +57,7 @@ func DeleteVideo(hub, videoKey string) string {
 }
 
 // BatchdeleteVideos  批量删除
+// videoKeys 视频列表
 func BatchdeleteVideos(hub string, videoKeys []string) string {
 
 	urlStr := QINIU_JEDI_HOST + "/v1/hubs/" + hub + "/videos"

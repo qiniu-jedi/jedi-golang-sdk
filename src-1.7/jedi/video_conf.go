@@ -37,6 +37,13 @@ func CreateConf(hub, name string) string {
 	return string(resData)
 }
 
+/*
+
+hub:        空间名
+transID     转码配置ID
+transSetID  转码预设ID
+*/
+
 // DeleteConf 删除转码配置
 func DeleteConf(hub, transID string) string {
 	url := QINIU_JEDI_HOST + "/v1/hubs/" + hub + "/transconfs/" + transID

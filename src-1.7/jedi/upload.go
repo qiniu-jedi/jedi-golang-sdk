@@ -15,6 +15,11 @@ type UploadTokenBody struct {
 }
 
 // UploadVideoFile 上传文件
+//Hub  点播空间名
+//videoType  video类型
+//filePath  文件目录
+//key 保存文件名
+//deadline token有效时间
 func UploadVideoFile(hub, videoType, filePath, key string, deadline int) error {
 
 	zone := 0
