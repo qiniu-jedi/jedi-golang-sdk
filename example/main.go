@@ -57,7 +57,7 @@ func main() {
 	// res := jedi.DeletePreset("if-dianbo", "", "")
 
 	//启用禁用转码预设 √
-	res := jedi.EnablePreset("if-dianbo", "", "", "0")
+	// res := jedi.EnablePreset("if-dianbo", "", "", "0")
 
 	//获取所有转码配置 √
 	// res := jedi.ListTransConf("if-dianbo")
