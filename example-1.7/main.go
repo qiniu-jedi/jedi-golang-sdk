@@ -13,7 +13,7 @@ func main() {
 	// res := jedi.GetUpToken("if-dianbo", "", 86400)
 
 	//上传测试√
-	// res := jedi.UploadVideoFile("if-dianbo", "", "/Users/tianyang/Downloads/last.mkv", "last.mkv", 86400)
+	// res := jedi.UploadVideoFile("if-dianbo", "", "", "last.mkv", 86400)
 
 	//查询视频√
 	// res := jedi.GetVideoInfo("if-dianbo", "fish1.mp4")
@@ -21,7 +21,7 @@ func main() {
 	//批量查询 第一次 √
 	// res := jedi.GetVideoList("if-dianbo", "", 2)
 	//批量查询 第二次 √
-	// res := jedi.GetVideoList("if-dianbo", "MTQ3NzQ5MTgxODcxMDAwMDAwMA==", 2)
+	// res := jedi.GetVideoList("if-dianbo", "", 2)
 
 	//更新视频√
 	// res := jedi.UpdateVideoInfo("if-dianbo", "java-deploy.mp4", "hahahaha.mp4", "description 3", []string{"xxxx", "b", "c", "d"})
@@ -35,29 +35,29 @@ func main() {
 	//批量删除 √
 	// res := jedi.BatchdeleteVideos("if-dianbo", []string{"fish3.mp4", "fish4.mp4"})
 
-	//创建转码配置 √ >>"id":"5811c3c164703ca43300002c"
+	//创建转码配置 √
 	// res := jedi.CreateConf("if-dianbo", "conf2")
 
 	//删除转码配置 √
-	// res := jedi.DeleteConf("if-dianbo", "5811b9dd64703c4c2f0003d7")
+	// res := jedi.DeleteConf("if-dianbo", "")
 
 	// videopreset := jedi.VideoInfo{"150k", 1280, 720, "24", "libx264"}
 	// audiopreset := jedi.AudioInfo{"256k", 50, "44100", "libfaac"}
 	// preset := jedi.TransferConf{"preset2", false, "mp4", videopreset, audiopreset}
-	//创建转码预设 √  5811c3df64703ca43300002e
-	// res := jedi.CreatePreset("if-dianbo", "5811c3c164703ca43300002c", preset)
+	//创建转码预设 √
+	// res := jedi.CreatePreset("if-dianbo", "", preset)
 
 	// GetPreset 获取转码预设√
-	// res := jedi.GetPreset("if-dianbo", "5811c3c164703ca43300002c", "5811c3df64703ca43300002e")
+	// res := jedi.GetPreset("if-dianbo", "", "")
 
 	// UpgradePreset 更新转码预设 √
-	// res := jedi.UpgradePreset("if-dianbo", "5811c3c164703ca43300002c", "5811c3df64703ca43300002e", preset)
+	// res := jedi.UpgradePreset("if-dianbo", "", "", preset)
 
 	//删除转码预设 √
-	// res := jedi.DeletePreset("if-dianbo", "5811c3c164703ca43300002c", "5811c3cc64703ca43300002d")
+	// res := jedi.DeletePreset("if-dianbo", "", "")
 
 	//启用禁用转码预设 √
-	res := jedi.EnablePreset("if-dianbo", "5811c3c164703ca43300002c", "5811c3df64703ca43300002e", "0")
+	res := jedi.EnablePreset("if-dianbo", "", "", "0")
 
 	//获取所有转码配置 √
 	// res := jedi.ListTransConf("if-dianbo")

@@ -26,7 +26,7 @@ type AudioInfo struct {
 	CodecName  string `json:"codec_name"`
 }
 
-// CreateConf 创建转吗配置
+// CreateConf 创建转码配置
 func CreateConf(hub, name string) string {
 	url := QINIU_JEDI_HOST + "/v1/hubs/" + hub + "/transconfs"
 
