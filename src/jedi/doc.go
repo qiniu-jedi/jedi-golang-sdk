@@ -3,6 +3,16 @@
 视频基本信息
 点播云主要解决的是视频的上传，转码，加水印等功能。其中关于视频，我们需要了解相关的一些概念。在七牛点播云系统中，一个视频的基本属性有 key ，name，tags，description，size，creation_time，modification_time，分为代表以下含义：
 
+使用方法：
+```go
+	var c jedi.ConfQiniu
+	c.SetMac("your_ak", "you_sk")
+
+	//获取uptoken
+	res := jedi.GetUpToken(c, "hubname", "", 86400)
+
+```
+
 属性	描述
 key	视频文件的key，该key在指定的点播空间中唯一存在
 name	视频文件的名称，该name在指定的点播空间中可以不唯一
