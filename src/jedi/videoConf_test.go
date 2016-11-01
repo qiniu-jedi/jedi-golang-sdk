@@ -32,7 +32,7 @@ func TestCreatePreset(t *testing.T) {
 
 func TestGetPreset(t *testing.T) {
 	var c ConfQiniu
-	c.SetMac("ak", "sk")
+
 	videopreset := VideoInfo{"150k", 1280, 720, "24", "libx264"}
 	audiopreset := AudioInfo{"256k", 50, "44100", "libfaac"}
 	preset := TransferConf{"preset2", false, "mp4", videopreset, audiopreset}

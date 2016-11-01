@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"path/filepath"
 
 	"qiniupkg.com/api.v7/kodocli"
 )
@@ -41,7 +42,8 @@ func UploadVideoFile(c ConfQiniu, hub, videoType, filePath string, deadline int)
 	if err != nil {
 		return err.Error(), err
 	}
-	err = uploader.PutFileWithoutKey(ctx, nil, uptoken.Uptoken, filePath, nil)
+	_, key := filepath.Split(filePath)
+	err = uploader.PutFile(ctx, nil, uptoken.Uptoken, key, filePath, nil)
 	if err != nil {
 		return err.Error(), err
 	}

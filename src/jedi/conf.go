@@ -6,21 +6,13 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
-
-// QINIU_JEDI_HOST API域名
-const QINIU_JEDI_HOST = "http://jedi.qiniuapi.com"
-
-//  ACCESS_KEY qiniu access key
-// var ACCESS_KEY string
-
-// SECRET_KEY qiniu secret key
-// var SECRET_KEY string
 
 type ConfQiniu struct {
 	AccessKey string
@@ -148,18 +140,22 @@ func RequestWithBody(method, url string, body interface{}, c ConfQiniu) (resData
 	client := http.Client{}
 
 	resp, err := client.Do(updateReq)
-	log.Println(1)
 
 	if err != nil {
-		log.Println("Failed get data from api:\n", err.Error())
+		// log.Println("Failed get data from api:\n", err.Error())
 		return []byte(err.Error()), err
 	}
 	defer resp.Body.Close()
+	// fmt.Println(resp.StatusCode)
 
 	resData, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("Failed to read from responese\n", err)
+		// log.Println("Failed to read from responese\n", err)
 		return []byte(err.Error()), err
+	}
+	if resp.StatusCode != 200 {
+
+		return resData, errors.New(string(resData))
 	}
 	if string(resData) == "{}" {
 		return []byte("OK"), nil

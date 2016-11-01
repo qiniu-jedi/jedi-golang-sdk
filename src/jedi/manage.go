@@ -2,6 +2,7 @@ package jedi
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 )
 
@@ -60,7 +61,7 @@ func DeleteVideo(c ConfQiniu, hub, key string) (res string, err error) {
 
 // BatchdeleteVideos  批量删除
 // videoKeys 视频列表
-func BatchdeleteVideos(c ConfQiniu, hub string, videoKeys []string) (res string, err error) {
+func BatchdeleteVideos(c ConfQiniu, hub string, videoKeys []string) (res DeleteInfo, err error) {
 
 	for i, v := range videoKeys {
 		videoKeys[i] = base64.URLEncoding.EncodeToString([]byte(v))
@@ -70,12 +71,12 @@ func BatchdeleteVideos(c ConfQiniu, hub string, videoKeys []string) (res string,
 		Keys []string `json:"keys"`
 	}{videoKeys}
 
-	urlStr := fmt.Sprintf("%s/vi/hubs/%s/videos", QINIU_JEDI_HOST, hub)
-	resData, err := RequestWithBody("DELETE", urlStr, keys, c)
-
+	urlStr := fmt.Sprintf("%s/v1/hubs/%s/videos", QINIU_JEDI_HOST, hub)
+	data, err := RequestWithBody("DELETE", urlStr, keys, c)
 	if err != nil {
-		return err.Error(), err
+		return res, err
 	}
-	return string(resData), nil
+	json.Unmarshal(data, &res)
+	return res, nil
 
 }
