@@ -3,6 +3,8 @@ package jedi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"path/filepath"
 
 	"qiniupkg.com/api.v7/kodocli"
 )
@@ -20,28 +22,32 @@ type UploadTokenBody struct {
 //filePath  文件目录
 //key 保存文件名
 //deadline token有效时间
-func UploadVideoFile(hub, videoType, filePath, key string, deadline int) error {
+func UploadVideoFile(c ConfQiniu, hub, videoType, filePath string, deadline int) (res string, err error) {
 
 	zone := 0
 	uploader := kodocli.NewUploader(zone, nil)
 	ctx := context.Background()
 
 	//Get Up Token
-	uploadToken := GetUpToken(hub, videoType, deadline)
+	uploadToken, err := GetUpToken(c, hub, videoType, deadline)
+	if err != nil {
+		return err.Error(), err
+	}
 
 	//token结构题
 	var uptoken struct {
 		Uptoken string `json:"uptoken"`
 	}
-	err := json.Unmarshal([]byte(uploadToken), &uptoken)
+	err = json.Unmarshal([]byte(uploadToken), &uptoken)
 	if err != nil {
-		return err
+		return err.Error(), err
 	}
+	_, key := filepath.Split(filePath)
 	err = uploader.PutFile(ctx, nil, uptoken.Uptoken, key, filePath, nil)
 	if err != nil {
-		return err
+		return err.Error(), err
 	}
-	return nil
+	return "upload Succeed", nil
 
 }
 
@@ -49,17 +55,21 @@ func UploadVideoFile(hub, videoType, filePath, key string, deadline int) error {
 //Hub  点播空间名
 //deadline  有效时间
 //aksk  用户密钥
-func GetUpToken(hub, videoType string, deadline int) string {
+func GetUpToken(c ConfQiniu, hub, videoType string, deadline int) (res string, err error) {
 
+	//set type equals "video" while It's emtpy
 	if videoType == "" {
 		videoType = "video"
 	}
 
-	urlStr := QINIU_JEDI_HOST + "/v1/uptokens"
+	urlStr := fmt.Sprintf("%s/v1/uptokens", QINIU_JEDI_HOST)
 	body := UploadTokenBody{hub, deadline, videoType}
 	//获取uptoken
-	data := RequestWithBody("POST", urlStr, body)
+	resData, err := RequestWithBody("POST", urlStr, body, c)
+	if err != nil {
+		return err.Error(), err
+	}
 
-	return string(data)
+	return string(resData), nil
 
 }

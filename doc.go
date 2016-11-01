@@ -10,7 +10,7 @@
 	}
 
 
-	//删除视频
+	//删除视频 
 	res2,err := jedi.DeleteVideo(c,"hubname", "key")
 	if err !=nil{
 		//Code
@@ -19,5 +19,3 @@
 
 
 */
-
-package jedi
