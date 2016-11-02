@@ -4,6 +4,7 @@
 更低版本暂时未测
 
 ---
+[Doc](https://godoc.org/github.com/TianZong48/jedi-golang-sdk)
 
 ##使用方法：
 ```go
