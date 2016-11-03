@@ -1,10 +1,10 @@
 # jedi-golang-sdk
 
+[![GoDoc](http://godoc.org/github.com/astaxie/beego?status.svg)](https://godoc.org/github.com/TianZong48/jedi-golang-sdk)
+
 本版本适用于 go 1.7.* 
 更低版本暂时未测
 
----
-[Doc](https://godoc.org/github.com/TianZong48/jedi-golang-sdk)
 
 ##使用方法：
 ```go
