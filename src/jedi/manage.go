@@ -14,11 +14,9 @@ type updateInfo struct {
 }
 
 /*
-
 hub 点播空间名
 key 视频key
 name 视频name
-
 */
 
 // UpdateVideoInfo 更新视频信息

@@ -88,3 +88,23 @@ type DeleteItem struct {
 	Key    string `json:"key"`
 	Status int    `json:"status"`
 }
+
+type WaterMarkConf struct {
+	Type      string `json:"type"`
+	Enabled   bool   `json:"enabled"`
+	Gravity   string `json:"gravity"`
+	OffsetX   int    `json:"offset_x"`
+	OffsetY   int    `json:"offset_y"`
+	Image     string `json:"image"`
+	Text      string `json:"text"`
+	TextFont  string `json:"text_font"`
+	TextColor string `json:"text_color"`
+	TextSize  int    `json:"text_size"`
+}
+type WaterMarkGroup struct {
+	Count int             `json:"count"`
+	Items []WaterMarkConf `json:"items"`
+}
+type WaterMarkCrt struct {
+	ID string `json:"id"`
+}

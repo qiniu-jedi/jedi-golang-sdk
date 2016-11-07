@@ -40,7 +40,7 @@ func GetVideoInfo(hub, key string) (resData VideoItem, err error) {
 }
 
 // GetVideoList 获取视频信息列表
-func GetVideoList(c ConfQiniu, hub, cursor string, count int) (resData VideoItem, err error) {
+func GetVideoList(c ConfQiniu, hub, cursor string, count int) (resData videoItems, err error) {
 	var urlStr string
 	//第一次不用提供cursor
 	if cursor == "" {
@@ -53,6 +53,7 @@ func GetVideoList(c ConfQiniu, hub, cursor string, count int) (resData VideoItem
 	if err != nil {
 		return resData, err
 	}
+
 	json.Unmarshal(data, &resData)
 	return resData, nil
 }

@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var c jedi.ConfQiniu
-	c.SetMac("ak", "sk")
+	c.SetMac("", "")
 
 	//获取上传凭证√
 	// res := jedi.GetUpToken(c, "if-dianbo", "", 86400)
@@ -27,10 +27,11 @@ func main() {
 	// 	return
 	// }
 
-	//批量查询 第一次 √
+	// 批量查询 第一次 √
 	// res, err := jedi.GetVideoList(c, "if-dianbo", "", 2)
 	// if err != nil {
 	// 	fmt.Println(err)
+	// 	return
 	// }
 	//批量查询 第二次 √
 	// res,err := jedi.GetVideoList(c, "if-dianbo", "MTQ3Nzg5ODU1OTcyMDAwMDAwMA==", 2)
@@ -113,5 +114,42 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	// fmt.Printf("%v\n", res)
+	conf := jedi.WaterMarkConf{"text", false, "North", 1, 1, "", "xasd", "", "", 20}
+	//创建水印配置 √ 58205537caf655a71d0001ab
+	res, err := jedi.CreateWatrMark(c, "if-dianbo", conf)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	//更新水印配置√
+	// res, err := jedi.UpdateWaterMark(c, "if-dianbo", "", conf)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	//获取水印配置 √
+	// res, err := jedi.GetWatermarkConf(c, "if-dianbo", "")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	//获取所有水印配置 √
+	// res, err := jedi.GetAllWaterConfs(c, "if-dianbo")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	//启用禁用水印配置
+	// res, err := jedi.EnableWaterMark(c, "if-dianbo", "", true)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
+	// res, err := jedi.DeleteWatermarkConf(c, "if-dianbo", "58205537caf655a71d0001ab")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	fmt.Printf("%v\n", res)
 }
