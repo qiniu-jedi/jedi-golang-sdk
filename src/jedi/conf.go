@@ -103,7 +103,11 @@ func RequestWithoutBody(method, url string, c ConfQiniu) (resData []byte, err er
 		log.Println("Failed to read from responese\n", err)
 		return []byte(err.Error()), err
 	}
-	// Jedi return "{}" if success
+
+	if resp.StatusCode != 200 {
+		return resData, errors.New(string(resData))
+	}
+
 	if string(resData) == "{}" {
 		return []byte("OK"), nil
 	}
@@ -153,10 +157,11 @@ func RequestWithBody(method, url string, body interface{}, c ConfQiniu) (resData
 		// log.Println("Failed to read from responese\n", err)
 		return []byte(err.Error()), err
 	}
-	if resp.StatusCode != 200 {
 
+	if resp.StatusCode != 200 {
 		return resData, errors.New(string(resData))
 	}
+
 	if string(resData) == "{}" {
 		return []byte("OK"), nil
 	}

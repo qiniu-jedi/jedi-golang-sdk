@@ -1,9 +1,16 @@
 # jedi-golang-sdk
 
+[![GoDoc](http://godoc.org/github.com/astaxie/beego?status.svg)](https://godoc.org/github.com/TianZong48/jedi-golang-sdk)
+
 本版本适用于 go 1.7.* 
 更低版本暂时未测
 
----
+##Before Start
+上传基于七牛存储go sdk
+```bash
+go get -u qiniupkg.com/api.v7
+```
+
 
 ##使用方法：
 ```go

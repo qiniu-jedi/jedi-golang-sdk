@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var c jedi.ConfQiniu
-	c.SetMac("Ome3aovf0XEAl6ATGQKKpMj4jqrws1_Hsziopq1U", "818Wub4AGBUoAjwaaa51LTeycjzl-fodGn7AltqZ")
+	c.SetMac("ak", "sk")
 
 	//获取上传凭证√
 	// res := jedi.GetUpToken(c, "if-dianbo", "", 86400)
@@ -26,6 +26,7 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
+
 	//批量查询 第一次 √
 	// res, err := jedi.GetVideoList(c, "if-dianbo", "", 2)
 	// if err != nil {
@@ -112,5 +113,5 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	fmt.Printf("%v\n", res)
+	// fmt.Printf("%v\n", res)
 }
