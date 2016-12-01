@@ -123,6 +123,7 @@ func RequestWithBody(method, url string, body interface{}, c ConfQiniu) (resData
 		// log.Println("json error", err)
 		return []byte(err.Error()), err
 	}
+	// fmt.Println(string(reqBody))
 	//// Make a new request with corresponding method, url and body
 	reqForToken, err := http.NewRequest(method, url, bytes.NewReader(reqBody))
 	if err != nil {

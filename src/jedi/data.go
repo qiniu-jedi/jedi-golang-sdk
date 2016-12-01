@@ -78,8 +78,6 @@ type ThumbnailInfo struct {
 	Active int      `json:"active"`
 }
 
-// ***视频信息 End ***
-
 type DeleteInfo struct {
 	Errors bool         `json:"errors"`
 	Items  []DeleteItem `json:"items"`
@@ -89,6 +87,7 @@ type DeleteItem struct {
 	Status int    `json:"status"`
 }
 
+// ***水印设置***
 type WaterMarkConf struct {
 	Type      string `json:"type"`
 	Enabled   bool   `json:"enabled"`
@@ -107,4 +106,17 @@ type WaterMarkGroup struct {
 }
 type WaterMarkCrt struct {
 	ID string `json:"id"`
+}
+
+// 跑马灯配置
+type MarqueeConf struct {
+	Direction string `json:"direction"`
+	Enabled   bool   `json:"enabled"`
+	Loop      int    `json:"loop"`
+	Duration  uint64 `json:"duration"`
+	Image     string `json:"image"`
+	Text      string `json:"text"`
+	TextFont  string `json:"text_font"`
+	TextColor string `json:"text_color"`
+	TextSize  uint32 `json:"text_size"`
 }

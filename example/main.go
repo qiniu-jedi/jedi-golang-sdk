@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var c jedi.ConfQiniu
-	c.SetMac("", "")
+	c.SetMac("", "nYKM7FrpI7V-xUpqnGMfW_iVLwa3bF5yQQJajJ0n")
 
 	//获取上传凭证√
 	// res := jedi.GetUpToken(c, "if-dianbo", "", 86400)
@@ -75,15 +75,15 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	// videopreset := jedi.VideoInfo{"150k", 1280, 720, "24", "libx264"}
-	// audiopreset := jedi.AudioInfo{"256k", 50, "44100", "libfaac"}
-	// preset := jedi.TransferConf{"preset2", false, "mp4", videopreset, audiopreset}
+	videopreset := jedi.VideoInfo{"150k", 1280, 720, "24", "libx264"}
+	audiopreset := jedi.AudioInfo{"256k", 50, "44100", "libfaac"}
+	preset := jedi.TransferConf{"preset2", false, "mp4", videopreset, audiopreset}
 	//创建转码预设 √
-	// res, err := jedi.CreatePreset(c, "if-dianbo", "5818271064703ca43300038f", preset)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
+	res, err := jedi.CreatePreset(c, "if-dianbo", "5821abb0caf655a71d000236", preset)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	// GetPreset 获取转码预设√
 	// res, err := jedi.GetPreset(c, "if-dianbo", "", "")
 	// if err != nil {
@@ -114,13 +114,13 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	conf := jedi.WaterMarkConf{"text", false, "North", 1, 1, "", "xasd", "", "", 20}
+	//conf := jedi.WaterMarkConf{"text", false, "North", 1, 1, "", "xasd", "", "", 20}
 	//创建水印配置 √ 58205537caf655a71d0001ab
-	res, err := jedi.CreateWatrMark(c, "if-dianbo", conf)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	//res, err := jedi.CreateWatrMark(c, "if-dianbo", conf)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
 	//更新水印配置√
 	// res, err := jedi.UpdateWaterMark(c, "if-dianbo", "", conf)
 	// if err != nil {
