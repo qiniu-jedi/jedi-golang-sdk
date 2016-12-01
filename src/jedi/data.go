@@ -122,7 +122,7 @@ type MarqueeConf struct {
 }
 
 //视频广告
-type VideoAdID struct {
+type AdID struct {
 	ID string `json:"id"`
 }
 type VideoAdConf struct {
@@ -138,12 +138,27 @@ type VideoAds struct {
 	Items []VideoAdConf `json:"items"`
 }
 
-type VAdsBatchDeleteConf struct {
+type AdsBatchDeleteConf struct {
 	Errors bool             `json:"errors"`
-	Items  []VAdsDeleteInfo `json:"items"`
+	Items  []AdsDeleteInfo `json:"items"`
 }
 
-type VAdsDeleteInfo struct {
+type AdsDeleteInfo struct {
 	ID     string `json:"id"`
 	Status int    `json:"status"`
+}
+
+//贴片广告
+type ImageAdConf struct {
+	Image string `json:"image"`
+	Enabled bool `json:"enabled"`
+	Name string `json:"name"`
+	FileName string `json:"file_name"`
+	Position string `json:"position"`
+	URL string `json:"url"`
+}
+
+type ImageAds struct {
+	Count int `json:"count"`
+	Items []ImageAdConf `json:"items"`
 }

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func CreateAd(c ConfQiniu, hub string, conf VideoAdConf) (res VideoAdID, err error) {
+func CreateAd(c ConfQiniu, hub string, conf VideoAdConf) (res AdID, err error) {
 
 	urlStr := fmt.Sprintf("%s/v1/hubs/%s/ad/videos", QINIU_JEDI_HOST, hub)
 	resData, err := RequestWithBody("POST", urlStr, conf, c)
@@ -32,7 +32,7 @@ func QueryVideoAd(c ConfQiniu, hub, VAdID string) (res VideoAdConf, err error) {
 	urlStr := fmt.Sprintf("%s/v1/hubs/%s/ad/videos/%s", QINIU_JEDI_HOST, hub, VAdID)
 	resData, err := RequestWithoutBody("GET", urlStr, c)
 	if err != nil {
-		return res, err
+		return nil, err
 	}
 	json.Unmarshal(resData, &res)
 	return res, nil
@@ -42,7 +42,7 @@ func GetVideoAds(c ConfQiniu, hub string) (res VideoAds, err error) {
 	urlStr := fmt.Sprintf("%s/v1/hubs/%s/ad/videos", QINIU_JEDI_HOST, hub)
 	resData, err := RequestWithoutBody("GET", urlStr, c)
 	if err != nil {
-		return res, err
+		return nil, err
 	}
 	json.Unmarshal(resData, &res)
 	return res, nil
@@ -57,7 +57,7 @@ func DeleteVAd(c ConfQiniu, hub, VAdID string) (res string, err error) {
 	return string(resData), nil
 }
 
-func BatchDeleteVAD(c ConfQiniu, hub string, ids []string) (res VAdsBatchDeleteConf, err error) {
+func BatchDeleteVAD(c ConfQiniu, hub string, ids []string) (res AdsBatchDeleteConf, err error) {
 
 	urlStr := fmt.Sprintf("%s/v1/hubs/%s/ad/videos", QINIU_JEDI_HOST, hub)
 
@@ -65,9 +65,9 @@ func BatchDeleteVAD(c ConfQiniu, hub string, ids []string) (res VAdsBatchDeleteC
 		IDS []string `json:"ids"`
 	}{ids}
 
-	resData, err := RequestWithBody("PUT", urlStr, reqBody, c)
+	resData, err := RequestWithBody("DELETE", urlStr, reqBody, c)
 	if err != nil {
-		return string(resData), err
+		return nil, err
 	}
 
 	json.Unmarshal(resData, &res)
