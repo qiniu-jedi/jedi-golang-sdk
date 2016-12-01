@@ -120,3 +120,30 @@ type MarqueeConf struct {
 	TextColor string `json:"text_color"`
 	TextSize  uint32 `json:"text_size"`
 }
+
+//视频广告
+type VideoAdID struct {
+	ID string `json:"id"`
+}
+type VideoAdConf struct {
+	VideoKey string `json:"video_key"`
+	Enabled  bool   `json:"enabled"`
+	Name     string `json:"name"`
+	Position string `json:"position"`
+	Url      string `json:"url"`
+}
+
+type VideoAds struct {
+	Count int           `json:"count"`
+	Items []VideoAdConf `json:"items"`
+}
+
+type VAdsBatchDeleteConf struct {
+	Errors bool             `json:"errors"`
+	Items  []VAdsDeleteInfo `json:"items"`
+}
+
+type VAdsDeleteInfo struct {
+	ID     string `json:"id"`
+	Status int    `json:"status"`
+}

@@ -9,7 +9,7 @@ func CreateUpdateMarquee(c ConfQiniu, hub string, conf MarqueeConf) (res string,
 	urlStr := fmt.Sprintf("%s/v1/hubs/%s/marquee", QINIU_JEDI_HOST, hub)
 	resData, err := RequestWithBody("POST", urlStr, conf, c)
 	if err != nil {
-		return res, err
+		return string(resData), err
 	}
 	//json.Unmarshal(resData, &res)
 	return string(resData), nil
@@ -34,7 +34,7 @@ func EnableMarquee(c ConfQiniu, hub string, enable bool) (res string, err error)
 	}
 	resData, err := RequestWithoutBody("PUT", urlStr, c)
 	if err != nil {
-		return res, err
+		return string(resData), err
 	}
 	return string(resData), nil
 }
