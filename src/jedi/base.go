@@ -30,7 +30,6 @@ func (c *ConfQiniu) Sign(req *http.Request) string {
 
 	//Get a sha1 HMAC hash with secretkey
 	h := hmac.New(sha1.New, []byte(c.SecretKey))
-
 	url := req.URL
 
 	//add path
@@ -39,7 +38,6 @@ func (c *ConfQiniu) Sign(req *http.Request) string {
 
 	//add query if it's not null
 	if url.RawQuery != "" {
-
 		io.WriteString(h, "?"+url.RawQuery)
 	}
 
@@ -62,6 +60,7 @@ func (c *ConfQiniu) Sign(req *http.Request) string {
 	} else {
 		body = []byte("")
 	}
+
 	if string(body) != "" && conType != "" &&
 		conType != "application/octet-stream" {
 		//Add Body into data
