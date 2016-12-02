@@ -3,6 +3,12 @@ package jedi
 // QINIU_JEDI_HOST API域名
 const QINIU_JEDI_HOST = "http://jedi.qiniuapi.com"
 
+//type GeneralErr struct {
+//	Description string      `json:"description"`
+//	Error       string      `json:"error"`
+//	Parameters  interface{} `json:"parameters"`
+//}
+
 // TransferConf 预设配置
 type TransferConf struct {
 	Name    string    `json:"name"`
@@ -139,7 +145,7 @@ type VideoAds struct {
 }
 
 type AdsBatchDeleteConf struct {
-	Errors bool             `json:"errors"`
+	Errors bool            `json:"errors"`
 	Items  []AdsDeleteInfo `json:"items"`
 }
 
@@ -150,15 +156,20 @@ type AdsDeleteInfo struct {
 
 //贴片广告
 type ImageAdConf struct {
-	Image string `json:"image"`
-	Enabled bool `json:"enabled"`
-	Name string `json:"name"`
+	Image    string `json:"image"`
+	Enabled  bool   `json:"enabled"`
+	Name     string `json:"name"`
 	FileName string `json:"file_name"`
 	Position string `json:"position"`
-	URL string `json:"url"`
+	URL      string `json:"url"`
 }
 
 type ImageAds struct {
-	Count int `json:"count"`
+	Count int           `json:"count"`
 	Items []ImageAdConf `json:"items"`
+}
+
+//drm
+type drmInfo struct {
+	UKey string `json:"ukey"`
 }

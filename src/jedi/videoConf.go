@@ -25,6 +25,7 @@ func DeleteConf(c ConfQiniu, hub, transID string) (res string, err error) {
 	url := fmt.Sprintf("%s/v1/hubs/%s/transconfs/%s", QINIU_JEDI_HOST, hub, transID)
 	resData, err := RequestWithoutBody("DELETE", url, c)
 	if err != nil {
+
 		return err.Error(), err
 	}
 
